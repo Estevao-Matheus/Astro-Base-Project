@@ -1,0 +1,270 @@
+---
+const { title, value } = Astro.props;
+---
+<div class="input-group">
+    <label for="volume">{title} </label>
+      <div class="input-range">
+        <input type="range" id="volume" value={value} />
+        <span class="input-range__bubble">2</span>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+.box-content {
+  margin: 4em 1em;
+  padding: 3em 2em;
+
+  max-width: 640px;
+  min-width: 320px;
+
+  border-radius: 12px;
+
+  background-color: white;
+  box-shadow: 2px 0 15px -2px rgba(0, 0, 0, 0.2);
+
+  display: grid;
+  row-gap: 2em;
+}
+
+.box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.box-content h1 {
+  margin: 0;
+  font-size: 1.4em;
+}
+
+.input-group {
+  display: grid;
+  row-gap: 1em;
+}
+
+.input-group > label {
+  font-weight: 700;
+  color:#FFFFFF;
+
+}
+
+.input-with-icon {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  column-gap: 1em;
+}
+
+/* ===================================================== */
+/* ===================================================== */
+/* Range Input */
+
+.input-range {
+  --track-height: 8px;
+  --slider-thumb-size: 16px;
+
+  --track-color: #FFFFFF;
+  --track-fill-color: #F266AB;
+  --slider-thumb-color: #FFFFFF;
+
+  position: relative;
+  
+  display: flex;
+  align-items: center;
+}
+
+.input-range__bubble {
+  --gap: -32;
+  --vertical: -2;
+  
+  --placing: calc(var(--slider-thumb-size) / var(--vertical));
+  --float: calc(var(--placing) + calc(var(--gap) * 1px));
+
+  padding: 12px;
+
+  position: absolute;
+  left: 0;
+
+  background-color: white;
+  box-shadow: 2px 0 15px -2px rgba(0, 0, 0, 0.4);
+
+  border-radius: 5px;
+  
+  font-size: 12px;
+  font-weight: 400;
+
+  transform: 
+    translateX(-50%) 
+    translateY(var(--float));
+
+  opacity: 0;
+  
+  transition: opacity 0.2s ease-in-out;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+
+  width: 100%;
+  height: var(--track-height);
+
+  border-radius: var(--track-height);
+
+  background: var(--track-color);
+
+  cursor: pointer;
+}
+
+/* Thumb */
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+
+  height: var(--slider-thumb-size);
+  width: var(--slider-thumb-size);
+
+  border-radius: 50%;
+  border: none;
+
+  background: var(--slider-thumb-color);
+  box-shadow: -1px 0 1px 1px rgba(0, 0, 0, 0.2);
+
+  outline-offset: 2px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+
+  height: var(--slider-thumb-size);
+  width: var(--slider-thumb-size);
+
+  border-radius: 50%;
+  border: none;
+
+  background: var(--slider-thumb-color);
+  box-shadow: -1px 0 1px 1px rgba(0, 0, 0, 0.2);
+
+  outline-offset: 2px;
+}
+
+/* Thumb Keyboard Focus */
+
+input[type="range"]:focus-visible {
+  outline: none;
+}
+
+input[type="range"]:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid #1a1a1a;
+}
+
+input[type="range"]:focus-visible::-moz-range-thumb {
+  outline: 2px solid #1a1a1a;
+}
+  </style>
+
+  <script>
+    const rangeSlider = document.querySelectorAll('input[type="range"]');
+
+const getPercentageValue = (element) => {
+  const min = element.min === "" ? 0 : Number(element.min);
+  const max = element.max === "" ? 100 : Number(element.max);
+
+  const value = Number(element.value);
+  const range = max - min;
+
+  const percentageValue = ((value - min) / range) * 100;
+
+  return percentageValue;
+};
+
+const adjustFillSlider = (element) => {
+  const percentageValue = getPercentageValue(element);
+
+  element.style.background = `linear-gradient(
+      to right, 
+      var(--track-fill-color) 0 ${percentageValue}%,
+      var(--track-color) ${percentageValue}% 100%
+    )`;
+};
+
+const showBubbleSlider = (element) => {
+  const parentElement = element.parentElement;
+  const bubble = parentElement.querySelector(".input-range__bubble");
+
+  const percentageValue = getPercentageValue(element);
+
+  const elementOffsetTop = element.getBoundingClientRect().top;
+
+  if (bubble) {
+    const bubbleStyle = window.getComputedStyle(bubble);
+    
+    const bubbleHeight = bubble.offsetHeight;
+
+    const isAbove = elementOffsetTop > (bubbleHeight * 1.5);
+
+    const gap = bubbleStyle.getPropertyValue("--gap");
+    const vertical = bubbleStyle.getPropertyValue("--vertical");
+
+    const numGap = Math.abs(Number(gap));
+    const numVertical = Math.abs(Number(vertical));
+
+    const newGap = isAbove ? -numGap : numGap;
+    const newVertical = isAbove ? -numVertical : numVertical;
+
+    bubble.style.setProperty("--gap", newGap);
+    bubble.style.setProperty("--vertical", newVertical);
+
+    bubble.style.left = `${percentageValue}%`;
+    bubble.style.opacity = 1;
+
+    bubble.innerText = element.value;
+  }
+};
+
+const hideBubbleSlider = (element) => {
+  const parentElement = element.parentElement;
+  const bubble = parentElement.querySelector(".input-range__bubble");
+
+  if (bubble) {
+    bubble.style.opacity = 0;
+  }
+};
+
+rangeSlider.forEach((slider) => {
+  adjustFillSlider(slider);
+
+  slider.addEventListener("input", () => {
+    adjustFillSlider(slider);
+    showBubbleSlider(slider);
+  });
+
+  slider.addEventListener("mouseover", () => {
+    showBubbleSlider(slider);
+  });
+
+  slider.addEventListener("focus", () => {
+    showBubbleSlider(slider);
+  });
+
+  slider.addEventListener("mouseout", () => {
+    hideBubbleSlider(slider);
+  });
+
+  slider.addEventListener("touchend", () => {
+    hideBubbleSlider(slider);
+  });
+
+  slider.addEventListener("focusout", () => {
+    hideBubbleSlider(slider);
+  });
+});
+
+  </script>

@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+import imagem from "/public/favicon.svg";
+import Button from "./ButtonMain.astro";
+---
+<div class="container">
+    <div class="textos">
+        <p class="text1">Hi I am</p>
+        <p class="text2">Momin</p>
+        <h1 class="text3"> UI & UX</h1>
+        <h1 class="text4"> Designer</h1>
+        <p class="p2">Bringing your vision to life with stunning and innovative designs.</p>
+        <div class="button-container">
+            <Button title="Hire me"/>
+        </div>
+    </div>
+    <div class="imagem">
+        <img  alt="imagem representando design" src="/public/undraw_design_team.svg"/>
+    </div>    
+</div>
+
+<style>
+    .container{
+        display:flex;
+        flex-direction:row;
+        margin-left: 165px;
+        padding: 50px 100px 0px 100px;
+        justify-content:space-between ;
+        font-size: 20px;
+
+    }
+    .textos {
+        align-self: center;
+    }
+    .text1{
+        color:#FFFFFF;
+        margin: 0;
+        line-height: 1rem;
+    }
+    .text2{
+        color:#2CD3E1;
+        margin: 0;
+        font-size: 32px;
+        
+    }
+    .text3,.text4{
+        color:#FFFFFF;
+        margin: 0;
+        font-size: 90px;
+        line-height: 4.5rem;
+        
+        
+    }
+    .text4 {
+       margin-left: 120px;
+    }
+    .imagem {
+        width: 501px;
+        height: 501px;
+        
+    }
+    p {
+        color: #FFFFFF;
+        margin: 0;
+    }
+    .p2{
+        margin-top: 3rem;
+        line-height: 2rem;
+        font-weight: 100;
+    }
+    .button-container {
+        margin-top: 2rem;
+    }
+
+</style>

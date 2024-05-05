@@ -1,3 +1,8 @@
+---
+import logo from '../../public/favicon.svg'
+---
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <div class="container">
     <input type="checkbox" id="menu" class="container-botao">
     <label for="menu" class="container-label">
@@ -9,7 +14,7 @@
             <label for="menu" class="container-label">
                 <span id="burguer" class="material-icons">menu</span>
             </label>
-            <img src="./assets/Berserk-logo-preview.png" class="logo">
+            <img src="/public/favicon.svg" class="logo">
         </div>
         <ul class="lista-menu">
             <li class="lista-menu-titulo">Categorias</li>
@@ -27,16 +32,28 @@
             </li>
         </ul>
     </div>
-    <img src="./assets/Berserk-logo-preview.png" class="logo">
+    <div class="logo-container">
+        <img src="/public/Layer_1.png" class="logo">
+        <div class="titulos-container">
+            <span class="subtitulo-header">Momin</span>
+            <p class="titulo-header">Graphics</p>
+        </div>
+    </div>
     <ul class="lista-menu-desktop">
         <li class="lista-menu-item">
             <a href="#" class="lista-menu-link">Home</a>
         </li>
         <li class="lista-menu-item">
-            <a href="#servicos" class="lista-menu-link">Volumes</a>
+            <a href="#servicos" class="lista-menu-link">About Me</a>
         </li>
         <li class="lista-menu-item">
-            <a href="./about.html" class="lista-menu-link">About Berserk</a>
+            <a href="./about.html" class="lista-menu-link">Services</a>
+        </li>
+        <li class="lista-menu-item">
+            <a href="./contact.html" class="lista-menu-link">Projects</a>
+        </li>
+        <li class="lista-menu-item">
+            <a href="./contact.html" class="lista-menu-link">Testimonials</a>
         </li>
         <li class="lista-menu-item">
             <a href="./contact.html" class="lista-menu-link">Contact</a>
@@ -52,6 +69,12 @@
     align-items: center;
     position: relative;
     background-color: var(--background-color);
+    margin-top: -3rem;
+}
+
+.logo-container {
+   display: flex;
+   flex-direction: row; 
 }
 
 .container {
@@ -85,29 +108,25 @@ span#burguer {
 
 .logo {
     margin-top: 0.5rem;
-    width: 80px;
-    height: 40px;
-}
-
-.titulo-header,
-.subtitulo-header {
-    font-family: var(--fonte-primaria);
+    width: 58px;
+    height: 35px;
 }
 
 .titulo-header {
     padding: 0;
-    margin: 1rem 0 0 0;
+    margin: 0rem 0 0 0;
     font-weight: 700;
-    font-size: 20px;
-    color: var(--primary-color);
+    font-size: 16px;
+    line-height: 0.7rem;
+    color: #A459D1;
 
 }
 
 .subtitulo-header {
-    margin: 0;
+    margin:0;
     font-weight: 400;
-    font-size: 10px;
-    color: var(--accent-color);
+    font-size: 12px;
+    color: #2CD3E1;
 }
 
 .container-botao {
@@ -195,19 +214,27 @@ span#burguer {
     fill: var(--secondary-color);
 }
 
+.titulos-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.4rem;
+    margin-top: 0.5rem;
+}
+
 @media screen and (min-width:1024px) {
     
     .container {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content:  flex-start;
         padding: 2rem 9% ;
+        gap: 3rem;
     }
 
     .logo {
         margin-top: 0.8rem;
-        width: 120px;
-        height: 60px;
+        width: 70px;
+        height: 40px;
     }
 
     .container-label {
@@ -244,10 +271,15 @@ span#burguer {
 
     .logo {
         margin-top: 0.8rem;
-        width: 160px;
-        height: 90px;
+        width: 100px;
+        height: 60px;
     }
-    
+    .titulos-container {
+      margin-top: 0.5rem;
+    }
+    .lista-menu-desktop {
+        margin-left: 4rem;
+    }
 }
 
 @media screen and (max-width: 700px) and (min-width: 400px)  {

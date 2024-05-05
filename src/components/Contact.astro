@@ -1,0 +1,79 @@
+---
+import ButtonMain from "./ButtonMain.astro"
+import ContactField from "./ContactField.astro"
+---
+<div class="container">
+    <div class="text-container">
+        <h1 class="tittle">Lets Design Together</h1>
+        <p class="text">Ready to elevate your brand with captivating design? Let's collaborate and create something extraordinary together.</h2>
+    </div>
+    <div class="contact-area">
+        <ContactField/>
+        <ButtonMain title="Contact Me" />
+    </div>
+</div>
+
+
+
+    <style>
+    .container {
+        display:flex;
+        flex-direction:column;
+        margin-left: 165px;
+        padding: 50px 100px 0px 100px;
+        justify-content:center ;
+        align-items: center;
+        font-size: 20px;
+      
+
+    }
+    .text-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: -1.5rem;
+    }
+    .tittle {
+        color: #FFFFFF;
+        line-height: 1.5px;
+        font-size: 65px;
+        font-weight: 650;
+     }
+     .text {
+        color: #FFFFFF;
+        font-size: 20px;
+        font-weight:200; 
+        margin-bottom: 4rem; 
+     }
+
+     .input_field {
+        width: 600px;
+        height: 40px;
+        padding: 0 0 0 40px;
+        border-radius: 7px;
+        margin-right: 1rem;
+        outline: none;
+        border: 1px solid #e5e5e5;
+        filter: drop-shadow(0px 1px 0px F266AB)
+        drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+        transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+     }
+    .input_label {
+      font-size: 0.75rem;
+      color: #8B8E98;
+      font-weight: 600;
+   }
+   .input_container {
+        width: 100%;
+        height: fit-content;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+   }
+   .contact-area {
+     display: flex;
+     flex-direction: row;
+     gap: 1rem
+   }
+    </style>
