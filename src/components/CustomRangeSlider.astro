@@ -173,7 +173,7 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   <script>
     const rangeSlider = document.querySelectorAll('input[type="range"]');
 
-const getPercentageValue = (element) => {
+const getPercentageValue = (element : any) => {
   const min = element.min === "" ? 0 : Number(element.min);
   const max = element.max === "" ? 100 : Number(element.max);
 
@@ -185,7 +185,7 @@ const getPercentageValue = (element) => {
   return percentageValue;
 };
 
-const adjustFillSlider = (element) => {
+const adjustFillSlider = (element : any) => {
   const percentageValue = getPercentageValue(element);
 
   element.style.background = `linear-gradient(
@@ -195,7 +195,7 @@ const adjustFillSlider = (element) => {
     )`;
 };
 
-const showBubbleSlider = (element) => {
+const showBubbleSlider = (element: any ) => {
   const parentElement = element.parentElement;
   const bubble = parentElement.querySelector(".input-range__bubble");
 
@@ -229,7 +229,7 @@ const showBubbleSlider = (element) => {
   }
 };
 
-const hideBubbleSlider = (element) => {
+const hideBubbleSlider = (element: any) => {
   const parentElement = element.parentElement;
   const bubble = parentElement.querySelector(".input-range__bubble");
 
