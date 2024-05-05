@@ -15,7 +15,7 @@ import Button from "./ButtonMain.astro";
         </div>
     </div>
     <div class="imagem">
-        <img  alt="imagem representando design" src="/public/undraw_design_team.svg"/>
+        <img width="100%"  height="100%" alt="imagem representando design" src="/public/undraw_design_team.svg"/>
     </div>    
 </div>
 
@@ -24,7 +24,7 @@ import Button from "./ButtonMain.astro";
         display:flex;
         flex-direction:row;
         margin-left: 165px;
-        padding: 50px 100px 0px 100px;
+        padding: 3.125rem 6.25rem 0px 6.25rem;
         justify-content:space-between ;
         font-size: 20px;
 
@@ -52,11 +52,11 @@ import Button from "./ButtonMain.astro";
         
     }
     .text4 {
-       margin-left: 120px;
+       margin-left: 7.5rem;
     }
     .imagem {
-        width: 501px;
-        height: 501px;
+        width: 601px;
+        height: 601px;
         
     }
     p {
@@ -71,5 +71,34 @@ import Button from "./ButtonMain.astro";
     .button-container {
         margin-top: 2rem;
     }
+    @media screen and (min-width:1024px) and (max-width: 1728px) {
+     
+     .container{
+        font-size: 16;
+     }   
+     .imagem {
+        width: 500px;
+        height: 401px;
+        
+     }
+     .text3,.text4{
+        color:#FFFFFF;
+        margin: 0;
+        font-size: 80px;
+        line-height: 4.5rem;  
+      }
+      .text4 {
+       margin-left: 7.5rem;
+    }
 
+    .text2{
+        font-size: 28px;
+        
+    }
+    .text1{
+        font-size: 16px;
+    }
+     
+    
+    }
 </style>
